@@ -12,11 +12,11 @@ function Login() {
 
     // let the user sign in  💯
     auth
-        .signInWithEmailAndPassword(Email,Password)
-        .then(auth => {
-            if(auth) History.push("/")
-        })
-        .catch(err => alert(err.message))
+      .signInWithEmailAndPassword(Email, Password)
+      .then((auth) => {
+        if (auth) History.push("/");
+      })
+      .catch((err) => alert(err.message));
   };
 
   const register = (e) => {

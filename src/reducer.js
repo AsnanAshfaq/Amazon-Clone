@@ -44,6 +44,13 @@ const reducer = (state, action) => {
         basket: newBasket,
       };
 
+    // empty the basket 🏀
+    case 'EMPTY_BASKET':
+      return{
+        ...state,
+        basket: []
+      }
+
     // set the user
     case "SET_USER":
       return {
