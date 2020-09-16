@@ -7,8 +7,7 @@ import { getBasketTotal } from "./reducer";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Axios from "./Axios.js";
 import { useHistory } from "react-router-dom";
-import {db} from './firebase'
-
+import { db } from "./firebase";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -54,28 +53,33 @@ function Payment() {
       .then(({ paymentIntent }) => {
         // payment intent is actually the payment confirmation
 
-        // payment is complete 
-        // add the order in the firebase cloud database 
-        db
-          .collection('users')
-          .doc(user?.id)
-          .collection('orders')
-          .doc(paymentIntent.id)
-          .set({
-            basket : basket,
-            amount : paymentIntent.amount,
-            created : paymentIntent.created
-          })
+        // payment is complete 🤑💰
+        // add the order in the firebase cloud database
 
-        // change the local states 
+        try {
+          console.log({user})
+          db.collection("users")
+            .doc(user?.uid)
+            .collection("orders")
+            .doc(paymentIntent.id)
+            .set({
+              basket: basket,
+              amount: paymentIntent.amount,
+              created: paymentIntent.created,
+            });
+        } catch (e) {
+          console.log(e.message);
+        }
+
+        // change the local states
         setsucceeded(true);
         setError(null);
         setprocessing(false);
 
-        // empty the basket 
+        // empty the basket in the CONTEXT API 👽
         dispatch({
-          type:'EMPTY_BASKET'
-        })
+          type: "EMPTY_BASKET",
+        });
         History.replace("/orders");
       });
   };
@@ -183,7 +187,7 @@ function Payment() {
                       style={{ backgroundColor: "#c0863e" }}
                       disabled={processing || Disabled || succeeded}
                     >
-                      <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                      {processing ? "Processing" : "Buy Now"}
                     </button>
                   </div>
                   <div className="col">

@@ -60,7 +60,8 @@ function App() {
             <Login />
           </Route>
           <Route path="/orders">
-            <Orders/>
+            <Header />
+            <Orders />
           </Route>
           <Route path="/">
             <Header />

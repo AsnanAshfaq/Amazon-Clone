@@ -1,7 +1,7 @@
 import React from "react";
 import { useStateValue } from "./StateProvide";
 
-function Checkout_Product({ id, desc, price, rating, imageURL }) {
+function Checkout_Product({ id, desc, price, rating, imageURL, hideButton }) {
   const [{ basket }, dispatch] = useStateValue();
 
   const removeFromBasket = (event) => {
@@ -36,16 +36,18 @@ function Checkout_Product({ id, desc, price, rating, imageURL }) {
                 <p key={Math.random()}>⭐️</p>
               ))}
           </div>
-          <div className="d-flex justify-content-start">
-            <button
-              className="border-0 w-auto btn"
-              style={{ backgroundColor: "#c0863e" }}
-              id={id}
-              onClick={removeFromBasket}
-            >
-              Remove From Basket
-            </button>
-          </div>
+          {!hideButton && (
+            <div className="d-flex justify-content-start">
+              <button
+                className="border-0 w-auto btn"
+                style={{ backgroundColor: "#c0863e" }}
+                id={id}
+                onClick={removeFromBasket}
+              >
+                Remove From Basket
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

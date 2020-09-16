@@ -58,30 +58,36 @@ const Header = () => {
               className="col-xl-4 col-lg-4 col-md-4 col-sm text-light"
               style={{ userSelect: "none" }}
               // function to toggle the Sign In functionality 💯
-              onClick={toggleSignIn}   
+              onClick={toggleSignIn}
             >
-              <span style={{maxWidth:30}}>
-               {/* if user is null show Hello Guest else show the user Email🎉 */}
-                {user ? user.email.substring(0,9)+'...' : 'Hello Guest'}
+              <span style={{ maxWidth: 30 }}>
+                {/* if user is null show Hello Guest else show the user Email🎉 */}
+                {user ? user.email.substring(0, 9) + "..." : "Hello Guest"}
                 <br />
               </span>
               <Link
                 // if user is null means we donot have any user signed in then take the user to login page 🎉
-                to={!user && "/login"}  
+                to={!user && "/login"}
                 style={{ color: "white", textDecoration: "none" }}
               >
                 {user ? <h5>Sign Out</h5> : <h5>Sign In</h5>}
               </Link>
             </div>
-            <div
-              className="col-xl-4 col-lg-4 col-md-4 col-sm text-light"
-              style={{ userSelect: "none" }}
+            <Link
+              to="/orders"
+              className="p-0 m-0"
+              style={{ color: "white", textDecoration: "none" }}
             >
-              <span>
-                Returns <br />
-              </span>
-              <h5>& Orders</h5>
-            </div>
+              <div
+                className="col-xl-4 col-lg-4 col-md-4 col-sm text-light"
+                style={{ userSelect: "none" }}
+              >
+                <span>
+                  Returns <br />
+                </span>
+                <h5>& Orders</h5>
+              </div>
+            </Link>
             <div
               className="col-xl-2 col-lg-2 col-md-2 col-sm text-light"
               style={{ userSelect: "none" }}
