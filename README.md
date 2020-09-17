@@ -1,6 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Amazon Clone
+![alt text](https://github.com/AsnanAshfaq/Amazon-Clone-with-Stripe/blob/master/Amazon-Clone.gif?raw=true)
 
 In the project directory, you can run:
 
